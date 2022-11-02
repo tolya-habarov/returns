@@ -350,6 +350,14 @@ class Result(
         """
         return inner_value
 
+    def is_successful(self):
+        """Determines if a container was successful or not."""
+        try:
+            self.unwrap()
+        except UnwrapFailedError:
+            return False
+        return True
+
 
 @final  # noqa: WPS338
 class Failure(Result[Any, _ErrorType]):  # noqa: WPS338
@@ -558,7 +566,10 @@ def safe(  # type: ignore # noqa: WPS234, C901
         @wraps(inner_function)
         def decorator(*args: _FuncParams.args, **kwargs: _FuncParams.kwargs):
             try:
-                return Success(inner_function(*args, **kwargs))
+                result = inner_function(*args, **kwargs)
+                if isinstance(result, Result):
+                    return result
+                return Success(result)
             except inner_exceptions as exc:
                 return Failure(exc)
         return decorator
