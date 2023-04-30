@@ -1,22 +1,6 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-
-[tool.nitpick]
-style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style-wemake.toml"
-
-[tool.slotscheck]
-strict-imports = true
-require-subclass = true
-require-superclass = true
-exclude-modules = 'returns\.contrib\.mypy'
-exclude-classes = 'returns\.primitives\.exceptions:UnwrapFailedError'
-
-
 [tool.poetry]
 name = "returns"
-version = "0.19.0"
+version = "0.20.0"
 description = "Make your functions return something meaningful, typed, and safe!"
 license = "BSD-3-Clause"
 
@@ -69,33 +53,48 @@ typing-extensions = ">=4.0,<5.0"
 anyio = "^3.6"
 curio = "^1.6"
 trio = "^0.22"
-attrs = "^22.1"
-httpx = "^0.23"
+attrs = "^23.1"
+httpx = "^0.24"
 
-mypy = "^0.950"
-wemake-python-styleguide = "^0.16"
+mypy = "^1.2.0"
+wemake-python-styleguide = "^0.17"
 flake8-pytest-style = "^1.6"
-flake8-pyi = "^22.10"
-# TODO: Remove this restriction when `ruamel.yaml.clib` works
-# correctly with Python 3.10. That lib is a dependency of `nitpick`!
-nitpick = { version = "^0.32", python = "<3.10" }
+flake8-pyi = "^23.4"
+nitpick = "^0.33.1"
 codespell = "^2.2"
-slotscheck = "^0.16.0"
+slotscheck = "^0.16.4"
 
-safety = "^2.2"
+safety = "^2.3"
 
-pytest = "^7.2"
+pytest = "^7.3"
 pytest-cov = "^4.0"
 pytest-randomly = "^3.12"
-pytest-mypy-plugins = "^1.9.2"
-pytest-subtests = "^0.9"
-hypothesis = "^6.56"
+pytest-mypy-plugins = "^1.10.1"
+pytest-subtests = "^0.10"
+hypothesis = "^6.74"
 
 sphinx = "^5.2"
-sphinx-autodoc-typehints = "^1.19"
-sphinxcontrib-mermaid = "0.7.1"
+sphinx-autodoc-typehints = "^1.23"
+sphinxcontrib-mermaid = "0.8.1"
 sphinx-typlog-theme = "^0.8"
-sphinx-hoverxref = "^1.1"
+sphinx-hoverxref = "^1.3"
 doc8 = "^1.0"
 m2r2 = "^0.3"
 tomlkit = "^0.11"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.nitpick]
+style = "https://raw.githubusercontent.com/wemake-services/wemake-python-styleguide/master/styles/nitpick-style-wemake.toml"
+
+
+[tool.slotscheck]
+strict-imports = true
+require-subclass = true
+require-superclass = true
+exclude-modules = 'returns\.contrib\.mypy'
+exclude-classes = 'returns\.primitives\.exceptions:UnwrapFailedError'
